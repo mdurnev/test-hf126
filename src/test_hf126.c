@@ -36,6 +36,9 @@ int main(void)
             close(STDERR_FILENO);
             setsid();
 
+            // pause
+            sleep(1);
+
             // fork one more time
             pid = fork();
             if (pid == -1)
@@ -63,8 +66,11 @@ int main(void)
             exit(1);
 
         default: // Parent process
+            // set main pid to 0
+            sd_notifyf(0, "MAINPID=%lu", (unsigned long)pid);
+
             // stay alive for a while
-            sleep(60);
+            sleep(10);
             exit(0);
     }
 }
