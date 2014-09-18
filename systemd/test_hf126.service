@@ -1,0 +1,7 @@
+[Unit]
+Description=Test daemon that does nothing special 
+
+[Service]
+ExecStart=@prefix@/bin/test_hf126
+Type=notify
+NotifyAccess=main
